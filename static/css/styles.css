@@ -1,0 +1,227 @@
+/* Existing styles */
+body {
+    font-family: Georgia, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+p, li, figcaption, .dependency {
+    color: #555;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2.4em;
+    text-decoration: underline;
+    text-decoration-style: double;
+}
+
+figure {
+    text-align: center;
+}
+
+img {
+    width: 250px;
+    transition: transform 0.3s ease; 
+}
+
+.logo {
+    width: 45px;
+}
+
+img.scaled {
+    transform: scale(2);
+}
+
+.component {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fafafa;
+}
+
+.component h2, .setup-header {
+    color: #007BFF;
+}
+
+.setup-header {
+    text-align: center;
+    
+}
+
+pre {
+    background-color: #252526;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+code {
+    font-family: monospace;
+    font-size: 14px;
+    color: #d4d4d4;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+/* New styles for collapsible functionality */
+.collapsible {
+    background-color: #f8f9fa;
+    color: #007BFF;
+    cursor: pointer;
+    padding: 12px 15px;
+    width: 100%;
+    border: 1px solid #dee2e6;
+    text-align: left;
+    outline: none;
+    font-size: 1em;
+    margin: 10px 0;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.collapsible:hover {
+    background-color: #e9ecef;
+}
+
+.collapsible:after {
+    content: '\002B';
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+    font-size: 1.2em;
+}
+
+.active:after {
+    content: "\2212";
+}
+
+.content {
+    display: none;
+    overflow: hidden;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0 0 5px 5px;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    padding: 15px;
+    transition: all 0.3s ease-out;
+}
+
+.content pre {
+    margin: 0;
+}
+
+/* Animation for content expansion */
+.content.show {
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Icon sizes */
+.material-icons {
+    font-size: 24px; /* Default size */
+}
+
+.zoom-controls .material-icons {
+    font-size: 14px; /* Smaller icons for zoom controls */
+    border: none;
+}
+
+.copy-button .material-icons {
+    font-size: 16px; /* Even smaller icons for copy buttons */
+}
+
+/* Icon colors */
+.material-icons {
+    color: #333; /* Default color */
+}
+
+.zoom-controls .material-icons {
+    color: #0056b3; /* Blue color for zoom controls */
+}
+
+.copy-button .material-icons {
+    color: #28a745; /* Green color for copy buttons */
+}
+
+/* Hover effects */
+.zoom-controls button:hover .material-icons,
+.copy-button:hover .material-icons {
+    color: #0056b3; /* Change color on hover */
+}
+
+/* Copy button styles */
+.copy-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: background-color 0.3s;
+}
+
+.copy-button:hover {
+    background-color: #f0f0f0;
+}
+
+.copy-button.copied .material-icons {
+    color: #28a745; /* Green color when copied */
+}
+
+/* Zoom control styles */
+.zoom-controls button {
+    background: none;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    padding: 5px;
+    margin: 0 2px;
+    transition: background-color 0.3s;
+}
+
+.zoom-controls button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Component icons */
+h2 .material-icons {
+    vertical-align: middle;
+    margin-right: 10px;
+    color: #0056b3; /* Blue color for component icons */
+}
+
+/* Collapsible button icons */
+.collapsible .material-icons {
+    transition: transform 0.3s;
+}
+
+.collapsible.active .material-icons:last-child {
+    transform: rotate(180deg);
+}

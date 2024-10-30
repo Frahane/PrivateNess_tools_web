@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Overview of Privateness Tools, a set of console tools for secure file storage and user management through the Emercoin blockchain.">
+    <meta name="keywords" content="Privateness Tools, Emercoin, secure file storage, user management, blockchain, software development">
+    <meta name="author" content="PrivateNess Network">
+    <title>Privateness Tools Overview</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <!-- Add Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+</head>
+<body>
+    <!-- Add a loading spinner -->
+    <div id="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Add a scroll-to-top button -->
+    <button id="scroll-to-top" title="Go to top">
+        <span class="material-icons">arrow_upward</span>
+    </button>
+
+    <div class="container">
+        <header>
+            <h1>
+                <img src="{{ url_for('static', filename='images/ness.png') }}" alt="PrivateNess Logo" class="logo">
+                PrivateNess Tools Overview
+            </h1>
+            
+            <!-- Add a quick navigation menu -->
+            <nav class="quick-nav">
+                <button class="nav-toggle">
+                    <span class="material-icons">menu</span>
+                    Quick Navigation
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="#setup">Setup</a></li>
+                    {% for name in components.keys() %}
+                    <li><a href="#{{ name|lower|replace(' ', '-') }}">{{ name }}</a></li>
+                    {% endfor %}
+                    <li><a href="#dependencies">Dependencies</a></li>
+                </ul>
+            </nav>
+
+            <div class="intro">
+                <p>The PrivatenessTools <a href="https://github.com/NESS-Network/PrivatenessTools" target="_blank" rel="noopener noreferrer">Repository</a> provides a set of console tools designed for interacting with the Privateness service node. These tools focus on secure file storage and user management through the Emercoin blockchain, offering a robust solution for decentralized and encrypted data handling.</p>
+                <p>Target Audience: Software engineers, developers, and frontend developers looking to build secure, blockchain-based applications using these tools.</p>
+                <a href="https://t.me/privatenesstech">PrivateNess Network Team</a>
+            </div>
+
+            <figure class="map-container">
+                <img class="repo-map" src="{{ url_for('static', filename='images/NESS_TOOLS_MAP.jpeg') }}" alt="Repository Map">
+                <figcaption>Repository Map (Click to zoom)</figcaption>
+                <!-- Add zoom controls -->
+                <div class="zoom-controls">
+                    <button class="zoom-in"><span class="material-icons">add</span></button>
+                    <button class="zoom-out"><span class="material-icons">remove</span></button>
+                    <button class="zoom-reset"><span class="material-icons">restart_alt</span></button>
+                </div>
+            </figure>
+
+            <section id="setup">
+                <h2 class="setup-header">Setup and Installation</h2>
+                <div class="setup-steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <h3>Clone Repository</h3>
+                        <div class="code-block">
+                            <code>git clone https://github.com/NESS-Network/PrivatenessTools.git</code>
+                            <button class="copy-button" data-clipboard-text="git clone https://github.com/NESS-Network/PrivatenessTools.git">
+                                <span class="material-icons">content_copy</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <h3>Navigate to Directory</h3>
+                        <div class="code-block">
+                            <code>cd PrivatenessTools</code>
+                            <button class="copy-button" data-clipboard-text="cd PrivatenessTools">
+                                <span class="material-icons">content_copy</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <h3>Install Dependencies</h3>
+                        <div class="code-block">
+                            <code>pip install humanize requests pynacl pycryptodome prettytable validators lxml libxslt random-word</code>
+                            <button class="copy-button" data-clipboard-text="pip install humanize requests pynacl pycryptodome prettytable validators lxml libxslt random-word">
+                                <span class="material-icons">content_copy</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <p class="setup-note">For detailed setup instructions and configuration, please refer to the <a href="https://github.com/NESS-Network/PrivatenessTools/blob/main/README.md" target="_blank" rel="noopener noreferrer">README</a> file in the repository.</p>
+            </section>
+        </header>
+
+        <main id="components">
+            {% for name, details in components.items() %}
+            <section id="{{ name|lower|replace(' ', '-') }}" class="component">
+                <h2>
+                    <span class="material-icons">{{ component_icons[name] }}</span>
+                    {{ name }}
+                </h2>
+                
+                <div class="component-content">
+                    {% if details.Functionality is string %}
+                        <div class="functionality">
+                            <h3><span class="material-icons">functions</span>Functionality</h3>
+                            <p>{{ details.Functionality }}</p>
+                        </div>
+                    {% elif details.Functionality is iterable %}
+                        <div class="functionality">
+                            <h3><span class="material-icons">functions</span>Functionality</h3>
+                            <ul>
+                            {% for func in details.Functionality %}
+                                <li>{{ func }}</li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+
+                    <div class="usage">
+                        <h3><span class="material-icons">help_outline</span>Usage</h3>
+                        <p>{{ details.Usage }}</p>
+                    </div>
+
+                    {% if 'Example' in details %}
+                    <div class="examples">
+                        {% if details['Example'] is mapping %}
+                            {% for api_name, api_content in details['Example'].items() if api_name.endswith(':') %}
+                                <button class="collapsible" aria-expanded="false">
+                                    <span class="material-icons">api</span>
+                                    {{ api_name }}
+                                    <span class="material-icons">expand_more</span>
+                                </button>
+                                <div class="content">
+                                    <pre><code class="language-plaintext">{{ api_content }}</code></pre>
+                                </div>
+                            {% endfor %}
+                            {% if 'code' in details['Example'] %}
+                                <button class="collapsible" aria-expanded="false">
+                                    <span class="material-icons">code</span>
+                                    Implementation Code
+                                    <span class="material-icons">expand_more</span>
+                                </button>
+                                <div class="content">
+                                    <div class="code-container">
+                                        <pre><code id="code-{{ loop.index }}" class="language-python">{{ details['Example']['code'] | trim }}</code></pre>
+                                        <button class="copy-button" data-clipboard-target="#code-{{ loop.index }}">
+                                            <span class="material-icons">content_copy</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            <button class="collapsible" aria-expanded="false">
+                                <span class="material-icons">code</span>
+                                Implementation Code
+                                <span class="material-icons">expand_more</span>
+                            </button>
+                            <div class="content">
+                                <div class="code-container">
+                                    <pre><code id="code-{{ loop.index }}" class="language-python">{{ details['Example'] | trim }}</code></pre>
+                                    <button class="copy-button" data-clipboard-target="#code-{{ loop.index }}">
+                                        <span class="material-icons">content_copy</span>
+                                    </button>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+        {% endfor %}
+    </main>
+        <footer>
+            <h2 id="dependencies" class="dependency">Dependencies To Install</h2>
+            <ul>
+                {% for dependency in dependencies %}
+                <li><strong>{{ dependency.split(':')[0] }}:</strong> {{ dependency.split(':')[1] }}</li>
+                {% endfor %}
+            </ul>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Add event listeners for collapsible elements
+            const collapsibles = document.querySelectorAll('.collapsible');
+            collapsibles.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    
+                    if (content.style.display === 'block') {
+                        content.style.display = 'none';
+                        content.classList.remove('show');
+                    } else {
+                        content.style.display = 'block';
+                        content.classList.add('show');
+                        // Refresh Prism highlighting
+                        Prism.highlightAll();
+                    }
+                });
+            });
+
+            // Add event listener for scroll-to-top button
+            const scrollToTopButton = document.getElementById('scroll-to-top');
+            scrollToTopButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Add event listener for zoom controls
+            const zoomControls = document.querySelectorAll('.zoom-controls button');
+            zoomControls.forEach(button => {
+                button.addEventListener('click', function() {
+                    const repoMap = document.querySelector('.repo-map');
+                    if (this.classList.contains('zoom-in')) {
+                        repoMap.style.transform = 'scale(1.2)';
+                    } else if (this.classList.contains('zoom-out')) {
+                        repoMap.style.transform = 'scale(0.8)';
+                    } else if (this.classList.contains('zoom-reset')) {
+                        repoMap.style.transform = 'scale(1)';
+                    }
+                });
+            });
+
+            // Add event listener for all copy buttons
+            const copyButtons = document.querySelectorAll('.copy-button');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-clipboard-target');
+                    let textToCopy;
+
+                    if (targetId) {
+                        // For implementation code
+                        textToCopy = document.querySelector(targetId).textContent;
+                    } else {
+                        // For setup steps
+                        textToCopy = this.getAttribute('data-clipboard-text');
+                    }
+
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        this.classList.add('copied');
+                        setTimeout(() => {
+                            this.classList.remove('copied');
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy text: ', err);
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
