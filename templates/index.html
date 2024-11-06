@@ -18,6 +18,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </head>
 <body>
     <!-- Add a loading spinner -->
@@ -77,7 +79,7 @@
                         <h3>Clone Repository</h3>
                         <div class="code-block">
                             <code>git clone https://github.com/NESS-Network/PrivatenessTools.git</code>
-                            <button class="copy-button" data-clipboard-text="git clone https://github.com/NESS-Network/PrivatenessTools.git">
+                            <button class="copy-button copy-btn" data-clipboard-text="git clone https://github.com/NESS-Network/PrivatenessTools.git">
                                 <span class="material-icons">content_copy</span>
                             </button>
                         </div>
@@ -87,7 +89,7 @@
                         <h3>Navigate to Directory</h3>
                         <div class="code-block">
                             <code>cd PrivatenessTools</code>
-                            <button class="copy-button" data-clipboard-text="cd PrivatenessTools">
+                            <button class="copy-button copy-btn" data-clipboard-text="cd PrivatenessTools">
                                 <span class="material-icons">content_copy</span>
                             </button>
                         </div>
@@ -97,7 +99,7 @@
                         <h3>Install Dependencies</h3>
                         <div class="code-block">
                             <code>pip install humanize requests pynacl pycryptodome prettytable validators lxml libxslt random-word</code>
-                            <button class="copy-button" data-clipboard-text="pip install humanize requests pynacl pycryptodome prettytable validators lxml libxslt random-word">
+                            <button class="copy-button copy-btn" data-clipboard-text="pip install humanize requests pynacl pycryptodome prettytable validators lxml libxslt random-word">
                                 <span class="material-icons">content_copy</span>
                             </button>
                         </div>
@@ -119,14 +121,14 @@
                     {% if details.Functionality is string %}
                         <div class="functionality">
                             <h3><span class="material-icons">functions</span>Functionality</h3>
-                            <p>{{ details.Functionality }}</p>
+                            <p class="functionality">{{ details.Functionality }}</p>
                         </div>
                     {% elif details.Functionality is iterable %}
                         <div class="functionality">
                             <h3><span class="material-icons">functions</span>Functionality</h3>
                             <ul>
                             {% for func in details.Functionality %}
-                                <li>{{ func }}</li>
+                                <li class="functionality">{{ func }}</li>
                             {% endfor %}
                             </ul>
                         </div>
@@ -134,7 +136,7 @@
 
                     <div class="usage">
                         <h3><span class="material-icons">help_outline</span>Usage</h3>
-                        <p>{{ details.Usage }}</p>
+                        <p class="usage">{{ details.Usage }}</p>
                     </div>
 
                     {% if 'Example' in details %}
@@ -222,6 +224,15 @@
             scrollToTopButton.addEventListener('click', function() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
+
+            window.addEventListener('scroll', () => {
+    const scrollButton = document.getElementById('scroll-to-top');
+    if (window.scrollY > 300) {
+        scrollButton.classList.add('visible');
+    } else {
+        scrollButton.classList.remove('visible');
+    }
+});
 
             // Add event listener for zoom controls
             const zoomControls = document.querySelectorAll('.zoom-controls button');
